@@ -1,12 +1,7 @@
 <% content_for :sidebar do %>
-  <div>
-    <%= render partial: "spree_on_the_rocks/shared/taxonomies" %>
-  </div>
+  <%= render partial: "spree_on_the_rocks/shared/taxonomies" %>
 <% end %>
 
-<div>
-  <% cache(cache_key_for_products) do %>
-    <%= render partial: "spree_on_the_rocks/shared/products", locals: { products: @products } %>
-  <% end %>
-</div>
-
+<% cache(cache_key_for_products) do %>
+  <%= render partial: "spree_on_the_rocks/shared/products", locals: { products: @products } %>
+<% end %>

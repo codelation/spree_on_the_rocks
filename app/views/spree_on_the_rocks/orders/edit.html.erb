@@ -9,12 +9,12 @@
 
   <%= form_for @order, url: update_cart_path do |order_form| %>
     <%= render partial: "form",
-               locals: { order_form: order_form } %>
+               locals:  { order_form: order_form } %>
 
-      <%= order_form.text_field :coupon_code, size: 10, placeholder: Spree.t(:coupon_code) %>
+    <%= order_form.text_field :coupon_code, size: 10, placeholder: Spree.t(:coupon_code) %>
 
-      <button><%= Spree.t(:update) %></button>
-      <button name="checkout"><%= Spree.t(:checkout) %></button>
+    <button><%= Spree.t(:update) %></button>
+    <button name="checkout"><%= Spree.t(:checkout) %></button>
   <% end %>
 
   <%= form_tag empty_cart_path, method: :put do %>
