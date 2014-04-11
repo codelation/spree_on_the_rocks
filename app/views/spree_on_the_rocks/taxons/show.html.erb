@@ -1,20 +1,15 @@
-<h1 class="taxon-title"><%= @taxon.name %></h1>
+<h1><%= @taxon.name %></h1>
 
 <% content_for :sidebar do %>
-  <div data-hook="taxon_sidebar_navigation">
-    <%= render :partial => 'spree/shared/taxonomies' %>
-    <%= render :partial => 'spree/shared/filters' if @taxon.children.empty? %>
-  </div>
+  <%= render partial: "spree_on_the_rocks/shared/taxonomies" %>
+  <%= render partial: "spree_on_the_rocks/shared/filters" if @taxon.children.empty? %>
 <% end %>
 
-<div data-hook="taxon_products">
-  <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon } %>
-</div>
+<%= render partial: "spree_on_the_rocks/shared/products",
+           locals: { products: @products, taxon: @taxon } %>
 
-  <% unless params[:keywords].present? %>
-    <div data-hook="taxon_children">
-    <% cache @taxon do %>
-      <%= render :partial => 'taxon', :collection => @taxon.children %>
-    <% end %>
-    </div>
+<% unless params[:keywords].present? %>
+  <% cache @taxon do %>
+    <%= render partial: "taxon", collection: @taxon.children %>
+  <% end %>
 <% end %>
