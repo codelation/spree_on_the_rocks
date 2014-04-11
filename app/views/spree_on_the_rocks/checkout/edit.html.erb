@@ -1,34 +1,23 @@
+<%= render partial: "spree_on_the_rocks/shared/error_messages", locals: { target: @order } %>
 
-  <%= render partial: 'spree_on_the_rocks/shared/error_messages', locals: { target: @order } %>
-  
-  <div>
-    <h1><%= Spree.t(:checkout) %></h1>
-    <div><%= checkout_progress %></div>
-  </div>
-  
-  <div>
-    <div>
-      <%= form_for @order, url: update_checkout_path(@order.state), html: { id: "checkout_form_#{@order.state}" } do |form| %>
-        <% unless @order.email? %>
-          <p>
-            <%= form.label :email %><br />
-            <%= form.text_field :email %>
-          </p>
-        <% end %>
-        <%= render @order.state, form: form %>
-      <% end %>
-    </div>    
-    <% if @order.state != 'confirm' %>
-      <div>
-        <%= render partial: 'summary', locals: { order: @order } %>
-      </div>
-    <% end %>
-  </div>
-</div>
+<h1><%= Spree.t(:checkout) %></h1>
+<%= checkout_progress %>
+<%= form_for @order, url: update_checkout_path(@order.state) do |form| %>
+  <% unless @order.email? %>
+    <p>
+      <%= form.label :email %><br/>
+      <%= form.text_field :email %>
+    </p>
+  <% end %>
+  <%= render @order.state, form: form %>
+<% end %>
+<% if @order.state != "confirm" %>
+  <%= render partial: "summary", locals: { order: @order } %>
+<% end %>
 
 <script>
-Spree.current_order_id = "<%= @order.number %>"
-Spree.current_order_token = "<%= @order.token %>"
+  Spree.current_order_id = "<%= @order.number %>"
+  Spree.current_order_token = "<%= @order.token %>"
 </script>
 
 <% if I18n.locale != :en %>
