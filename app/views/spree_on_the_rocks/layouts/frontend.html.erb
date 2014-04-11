@@ -1,0 +1,27 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie ie6" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
+<%= render partial: "spree_on_the_rocks/layouts/frontend/head" %>
+
+<body class="<%= body_class %>">
+  <%= render partial: "spree_on_the_rocks/layouts/frontend/header" %>
+  <%= flash_messages %>
+
+  <%= breadcrumbs(@taxon) %>
+  <%= render partial: "spree/shared/sidebar" if content_for? :sidebar %>
+
+  <main>
+    <%= render partial: "spree_on_the_rocks/layouts/frontend/sidebar" if content_for? :sidebar %>
+    <article>
+      <%= yield %>
+    </article>
+  </main>
+
+  <%= render partial: "spree_on_the_rocks/layouts/frontend/footer" %>
+  <%= render partial: "spree_on_the_rocks/layouts/frontend/scripts" %>
+</body>
+
+</html>
